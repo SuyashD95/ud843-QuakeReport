@@ -87,7 +87,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // set this text on the dateTextView
         dateTextView.setText(currentEarthquake.getLocation());
 
-        // Return the whole list item layout (containing 2 TextViews)
+        // Return the whole list item layout (containing 3 TextViews)
         // so that it can be shown in the ListView
         return listItemView;
     }
