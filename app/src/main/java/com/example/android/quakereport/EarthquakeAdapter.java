@@ -16,9 +16,11 @@
 package com.example.android.quakereport;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -55,9 +57,38 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        /**
-         * TODO: Modify the getView() method of the EarthquakeAdapter class.
-         */
-        return super.getView(position, convertView, parent);
+        View listItemView = convertView;
+
+        // Check for a scrap view. If there are no scrap views to be recycled
+        // i.e., listItemView == null, then create a new View.
+        if(listItemView == null) {
+            listItemView = LayoutInflater.from(getContext()).inflate(
+                    R.layout.earthquake_list_item, parent, false);
+        }
+
+        // Get the {@link Earthquake} object located at this position in the list
+        Earthquake currentEarthquake = getItem(position);
+
+        // Find the TextView in the earthquake_list_item.xml layout with the ID magnitude_text_view
+        TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.magnitude_text_view);
+        // Get the magnitude from the current Earthquake object and
+        // set this text on the magnitudeTextView
+        magnitudeTextView.setText(String.valueOf(currentEarthquake.getMagnitude()));
+
+        // Find the TextView in the earthquake_list_item.xml layout with the ID location_text_view
+        TextView locationTextView = (TextView) listItemView.findViewById(R.id.location_text_view);
+        // Get the location from the current Earthquake object and
+        // set this text on the locationTextView
+        locationTextView.setText(currentEarthquake.getLocation());
+
+        // Find the TextView in the earthquake_list_item.xml layout with the ID date_text_view
+        TextView dateTextView = (TextView) listItemView.findViewById(R.id.date_text_view);
+        // Get the location from the current Earthquake object and
+        // set this text on the dateTextView
+        dateTextView.setText(currentEarthquake.getLocation());
+
+        // Return the whole list item layout (containing 2 TextViews)
+        // so that it can be shown in the ListView
+        return listItemView;
     }
 }
