@@ -85,7 +85,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView dateTextView = (TextView) listItemView.findViewById(R.id.date_text_view);
         // Get the location from the current Earthquake object and
         // set this text on the dateTextView
-        dateTextView.setText(currentEarthquake.getLocation());
+        dateTextView.setText(currentEarthquake.getDate());
 
         // Return the whole list item layout (containing 3 TextViews)
         // so that it can be shown in the ListView
