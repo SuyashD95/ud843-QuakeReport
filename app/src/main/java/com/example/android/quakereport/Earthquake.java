@@ -17,7 +17,7 @@
 package com.example.android.quakereport;
 
 /**
- * Used to hold all the relevant information related to a single earthquake.
+ * {@link Earthquake} is used to hold all the relevant information related to a single earthquake.
  */
 public class Earthquake {
 
@@ -43,17 +43,23 @@ public class Earthquake {
         mDate = date;
     }
 
-    /** Get the magnitude of {@link com.example.android.quakereport.Earthquake} */
+    /**
+     * Get the magnitude of {@link com.example.android.quakereport.Earthquake}
+     */
     public double getMagnitude() {
         return mMagnitude;
     }
 
-    /** Get the location of {@link com.example.android.quakereport.Earthquake} */
+    /**
+     * Get the location of {@link com.example.android.quakereport.Earthquake}
+     */
     public String getLocation() {
         return mLocation;
     }
 
-    /** Get the date of {@link com.example.android.quakereport.Earthquake} */
+    /**
+     * Get the date of {@link com.example.android.quakereport.Earthquake}
+     */
     public String getDate() {
         return mDate;
     }
