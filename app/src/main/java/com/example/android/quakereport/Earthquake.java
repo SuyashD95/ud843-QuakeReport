@@ -27,41 +27,42 @@ public class Earthquake {
     /** Stores the location where earthquake has occurred */
     private String mLocation;
 
-    /** Stores the date when an earthquake happened */
-    private String mDate;
+    /** Stores the time of the earthquake */
+    private long mTimeInMilliseconds;
 
     /**
      * Create an object of {@link Earthquake}.
      *
-     * @param magnitude Magnitude of the earthquake
-     * @param location  Location where earthquake occurred
-     * @param date      Date when the earthquake happened
+     * @param magnitude          Magnitude of the earthquake
+     * @param location           Location where earthquake occurred
+     * @param timeInMilliseconds is the time in milliseconds (from the Epoch) when the
+     *                           earthquake happened
      */
-    public Earthquake(double magnitude, String location, String date) {
+    public Earthquake(double magnitude, String location, long timeInMilliseconds) {
         mMagnitude = magnitude;
         mLocation = location;
-        mDate = date;
+        mTimeInMilliseconds = timeInMilliseconds;
     }
 
     /**
-     * Get the magnitude of {@link com.example.android.quakereport.Earthquake}
+     * Returns the magnitude of the earthquake
      */
     public double getMagnitude() {
         return mMagnitude;
     }
 
     /**
-     * Get the location of {@link com.example.android.quakereport.Earthquake}
+     * Returns the location of the earthquake
      */
     public String getLocation() {
         return mLocation;
     }
 
     /**
-     * Get the date of {@link com.example.android.quakereport.Earthquake}
+     * Returns the time of the earthquake
      */
-    public String getDate() {
-        return mDate;
+    public long getTimeInMilliseconds() {
+        return mTimeInMilliseconds;
     }
 
     /**
@@ -70,6 +71,6 @@ public class Earthquake {
     @Override
     public String toString() {
         return "Earthquake:\nmagnitude = " + mMagnitude + ",\nlocation = " + mLocation +
-                ",\ndate = " + mDate + ".";
+                ",\ntimeInMilliseconds = " + mTimeInMilliseconds + ".";
     }
 }
