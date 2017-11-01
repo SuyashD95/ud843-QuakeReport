@@ -27,14 +27,20 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * {@link EarthquakeAdapter} is an {@link ArrayAdapter} that can provide the layout for each list
- * based on a data source, which is a list of {@link Earthquake} objects.
+ * An {@link EarthquakeAdapter} knows how to create a list item layout for each earthquake
+ * in the data source (a list of {@link Earthquake} objects).
+ *
+ * These list item layouts will be provided to an adapter view like ListView
+ * to be displayed to the user.
  */
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
     private static final String LOG_TAG = EarthquakeAdapter.class.getSimpleName();
 
-    /** String sequence used in extracting the offset and primary location of the earthquake */
+    /**
+     * The part of the location string from the USGS service that we use to determine
+     * whether or not there is a location offset present ("5km N of Cairo, Egypt").
+     */
     private static final String LOCATION_SEPARATOR = "of";
 
     /**
