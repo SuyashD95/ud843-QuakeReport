@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,9 +83,11 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
         // Find the TextView in the earthquake_list_item.xml layout with the ID magnitude_text_view
         TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.magnitude_text_view);
+        // Format the magnitude to show 1 decimal place
+        String formattedMagnitude = formatMagnitude(currentEarthquake.getMagnitude());
         // Get the magnitude from the current Earthquake object and
         // set this text on the magnitudeTextView
-        magnitudeTextView.setText(String.valueOf(currentEarthquake.getMagnitude()));
+        magnitudeTextView.setText(formattedMagnitude);
 
         // Find the TextView with view ID location_offset_text_view
         TextView locationOffsetView = (TextView) listItemView.findViewById(R.id.location_offset_text_view);
@@ -141,7 +144,8 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     }
 
     /**
-     * Return the proximity of the earthquake's epicenter from the primary location.
+     * Return the proximity of the earthquake's epicenter (i.e. "10km N of")
+     * from the primary location.
      */
     private String formatLocationOffset(String place) {
         // Check if the place mentions the proximity to the primary location
@@ -158,7 +162,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     }
 
     /**
-     * Return the primary location which will get affected from the earthquake
+     * Return the primary location (i.e. "New York") which will get affected from the earthquake
      */
     private String formatPrimaryLocation(String place) {
         // Check if the place mentions the proximity to the primary location
@@ -172,5 +176,14 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
             // Otherwise return the passed {@link String} as it is, without any formatting
             return place;
         }
+    }
+
+    /**
+     * Return the formatted magnitude string showing 1 decimal place (i.e. "3.2")
+     * from a decimal magnitude value.
+     */
+    private String formatMagnitude(double magnitude) {
+        DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
+        return magnitudeFormat.format(magnitude);
     }
 }
