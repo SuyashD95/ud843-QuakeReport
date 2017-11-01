@@ -29,11 +29,15 @@
         android:layout_weight="1"
         tools:text="7.2" />
 
-    <!--
-    TODO: 1. Split location_text_view into two separate TextViews for offset and primaryLocation
-    -->
     <TextView
-        android:id="@+id/location_text_view"
+        android:id="@+id/location_offset_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="10km N of" />
+
+    <TextView
+        android:id="@+id/primary_location_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
