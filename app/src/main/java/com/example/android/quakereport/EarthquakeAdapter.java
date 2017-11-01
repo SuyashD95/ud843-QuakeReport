@@ -16,6 +16,7 @@
 package com.example.android.quakereport;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,6 +84,8 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // set this text on the locationTextView
         locationTextView.setText(currentEarthquake.getLocation());
 
+        // TODO: 2. Format the location into offset and primaryLocation and integrate it into UI
+
         // Create a new Date object from the time in milliseconds of the earthquake
         Date dateObject = new Date(currentEarthquake.getTimeInMilliseconds());
 
@@ -119,5 +122,39 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     private String formatTime(Date dateObject) {
         SimpleDateFormat timeFormat =  new SimpleDateFormat("h:mm a");
         return timeFormat.format(dateObject);
+    }
+
+    /**
+     * Return the proximity of the earthquake's epicenter from the primary location.
+     */
+    private String formatLocationOffset(String place) {
+        // Check if the place mentions the proximity to the primary location
+        if(place.contains("of")) {
+            // Then split the offset from the primary location and return the substring from
+            // beginning to endIndex (character at endIndex not included)
+            int endIndex = place.indexOf("of") + 2;
+            return place.substring(0, endIndex);
+        }
+        else {
+            // Otherwise return 'Near the'
+            return "Near the";
+        }
+    }
+
+    /**
+     * Return the primary location which will get affected from the earthquake
+     */
+    private String formatPrimaryLocation(String place) {
+        // Check if the place mentions the proximity to the primary location
+        if(place.contains("of")) {
+            // Then split the primary location from the passed {@link String} and return the
+            // resultant substring from startIndex
+            int startIndex = place.indexOf("of") + 3;
+            return place.substring(startIndex);
+        }
+        else {
+            // Otherwise return the passed {@link String} as it is, without any formatting
+            return place;
+        }
     }
 }
