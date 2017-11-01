@@ -34,6 +34,9 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
     private static final String LOG_TAG = EarthquakeAdapter.class.getSimpleName();
 
+    /** String sequence used in extracting the offset and primary location of the earthquake */
+    private static final String LOCATION_SEPARATOR = "of";
+
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).
      *
@@ -77,7 +80,6 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // set this text on the magnitudeTextView
         magnitudeTextView.setText(String.valueOf(currentEarthquake.getMagnitude()));
 
-        // TODO: 2. Format the location into offset and primaryLocation and integrate it into UI
         // Find the TextView with view ID location_offset_text_view
         TextView locationOffsetView = (TextView) listItemView.findViewById(R.id.location_offset_text_view);
         // Parse the String containing the place and extract the substring which stores information
@@ -137,15 +139,15 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
      */
     private String formatLocationOffset(String place) {
         // Check if the place mentions the proximity to the primary location
-        if(place.contains("of")) {
+        if(place.contains(LOCATION_SEPARATOR)) {
             // Then split the offset from the primary location and return the substring from
             // beginning to endIndex (character at endIndex not included)
-            int endIndex = place.indexOf("of") + 2;
+            int endIndex = place.indexOf(LOCATION_SEPARATOR) + 2;
             return place.substring(0, endIndex);
         }
         else {
             // Otherwise return 'Near the'
-            return "Near the";
+            return getContext().getString(R.string.near_the);
         }
     }
 
@@ -154,10 +156,10 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
      */
     private String formatPrimaryLocation(String place) {
         // Check if the place mentions the proximity to the primary location
-        if(place.contains("of")) {
+        if(place.contains(LOCATION_SEPARATOR)) {
             // Then split the primary location from the passed {@link String} and return the
             // resultant substring from startIndex
-            int startIndex = place.indexOf("of") + 3;
+            int startIndex = place.indexOf(LOCATION_SEPARATOR) + 3;
             return place.substring(startIndex);
         }
         else {
