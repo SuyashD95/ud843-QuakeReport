@@ -16,7 +16,6 @@
 package com.example.android.quakereport;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,13 +77,22 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // set this text on the magnitudeTextView
         magnitudeTextView.setText(String.valueOf(currentEarthquake.getMagnitude()));
 
-        // Find the TextView in the earthquake_list_item.xml layout with the ID location_text_view
-        TextView locationTextView = (TextView) listItemView.findViewById(R.id.location_text_view);
-        // Get the location from the current Earthquake object and
-        // set this text on the locationTextView
-        locationTextView.setText(currentEarthquake.getLocation());
-
         // TODO: 2. Format the location into offset and primaryLocation and integrate it into UI
+        // Find the TextView with view ID location_offset_text_view
+        TextView locationOffsetView = (TextView) listItemView.findViewById(R.id.location_offset_text_view);
+        // Parse the String containing the place and extract the substring which stores information
+        // about the proximity of the earthquake's epicenter from the primary location
+        String locationOffset = formatLocationOffset(currentEarthquake.getLocation());
+        // Display the location offset of the current earthquake in that TextView
+        locationOffsetView.setText(locationOffset);
+
+        // Find the TextView with view ID primary_location_text_view
+        TextView primaryLocationView = (TextView) listItemView.findViewById(R.id.primary_location_text_view);
+        // Parse the String containing the place and extract the substring with the primary
+        // location
+        String primaryLocation = formatPrimaryLocation(currentEarthquake.getLocation());
+        // Display the primary location of the current earthquake in that TextView
+        primaryLocationView.setText(primaryLocation);
 
         // Create a new Date object from the time in milliseconds of the earthquake
         Date dateObject = new Date(currentEarthquake.getTimeInMilliseconds());
