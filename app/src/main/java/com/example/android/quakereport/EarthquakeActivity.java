@@ -37,13 +37,13 @@ public class EarthquakeActivity extends AppCompatActivity {
         setContentView(R.layout.earthquake_activity);
 
         // Create a fake list of earthquake locations.
-        final ArrayList<Earthquake> earthquakes = QueryUtils.extractEarthquakes();
+        ArrayList<Earthquake> earthquakes = QueryUtils.extractEarthquakes();
 
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
 
         // Create a new {@link ArrayAdapter} of earthquakes
-        ArrayAdapter earthquakeAdapter = new EarthquakeAdapter(this, earthquakes);
+        final ArrayAdapter earthquakeAdapter = new EarthquakeAdapter(this, earthquakes);
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
@@ -53,12 +53,12 @@ public class EarthquakeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Get the {@link Earthquake} object at the given position the user clicked on
-                Earthquake earthquake = earthquakes.get(position);
+                Earthquake earthquake = (Earthquake) earthquakeAdapter.getItem(position);
 
                 // Set the url of the earthquake as the Uri for the implicit intent of
                 // loading a page on the web browser
-                Uri webpage = Uri.parse(earthquake.getUrl());
-                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                Uri webPage = Uri.parse(earthquake.getUrl());
+                Intent intent = new Intent(Intent.ACTION_VIEW, webPage);
                 if(intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
