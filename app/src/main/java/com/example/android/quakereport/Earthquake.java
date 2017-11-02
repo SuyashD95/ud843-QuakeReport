@@ -83,6 +83,7 @@ public class Earthquake {
     @Override
     public String toString() {
         return "Earthquake:\nmagnitude = " + mMagnitude + ",\nlocation = " + mLocation +
-                ",\ntimeInMilliseconds = " + mTimeInMilliseconds + ".";
+                ",\ntimeInMilliseconds = " + mTimeInMilliseconds +
+                ",\nurl = " + mUrl + ".";
     }
 }
