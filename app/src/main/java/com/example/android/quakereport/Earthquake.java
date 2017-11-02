@@ -30,6 +30,9 @@ public class Earthquake {
     /** Stores the time of the earthquake */
     private long mTimeInMilliseconds;
 
+    /** Stores the url which shows the information about the earthquake at USGS website */
+    private String mUrl;
+
     /**
      * Create an object of {@link Earthquake}.
      *
@@ -37,11 +40,13 @@ public class Earthquake {
      * @param location           Location where earthquake occurred
      * @param timeInMilliseconds is the time in milliseconds (from the Epoch) when the
      *                           earthquake happened
+     * @param url                Url of the earthquake's information at USGS website
      */
-    public Earthquake(double magnitude, String location, long timeInMilliseconds) {
+    public Earthquake(double magnitude, String location, long timeInMilliseconds, String url) {
         mMagnitude = magnitude;
         mLocation = location;
         mTimeInMilliseconds = timeInMilliseconds;
+        mUrl = url;
     }
 
     /**
@@ -63,6 +68,13 @@ public class Earthquake {
      */
     public long getTimeInMilliseconds() {
         return mTimeInMilliseconds;
+    }
+
+    /**
+     * Returns the url of the earthquake at USGS website
+     */
+    public String getUrl() {
+        return mUrl;
     }
 
     /**
