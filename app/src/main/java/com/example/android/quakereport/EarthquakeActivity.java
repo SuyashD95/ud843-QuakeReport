@@ -75,6 +75,10 @@ public class EarthquakeActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // Start the AsyncTask to fetch the earthquake data
+        EarthquakeAsyncTask task = new EarthquakeAsyncTask();
+        task.execute(USGS_REQUEST_URL);
     }
 
     /**
