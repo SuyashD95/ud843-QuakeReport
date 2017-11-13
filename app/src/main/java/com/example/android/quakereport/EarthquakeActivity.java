@@ -93,9 +93,20 @@ public class EarthquakeActivity extends AppCompatActivity {
      */
     private class EarthquakeAsyncTask extends AsyncTask<String, Void, List<Earthquake>> {
 
+        /**
+         * This method runs on a background thread and performs the network request.
+         * We should not update the UI from a background thread, so we return a list of
+         * {@link Earthquake}s as the result.
+         */
         @Override
         protected List<Earthquake> doInBackground(String... urls) {
-            return null;
+            // Don't perform the request if there no URLs, or the first URL is null.
+            if(urls.length < 1 || urls[0] == null) {
+                return null;
+            }
+
+            List<Earthquake> result = QueryUtils.fetchEarthquakeData(urls[0]);
+            return result;
         }
 
         /**
